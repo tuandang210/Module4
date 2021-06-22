@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Product</title>
+</head>
+<body>
+<h1>Manage Product</h1>
+<p><a th:href="@{/products}">Back to list</a></p>
+<hr>
+<form th:object="${product}" enctype="multipart/form-data">
+    <table>
+        <tr>
+            <th>Id</th>
+            <td><input type="text" readonly th:field="*{id}">
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td><input type="text" readonly th:field="*{name}"></td>
+        </tr>
+        <tr>
+            <th>Descriptions</th>
+            <td><input type="text" readonly th:field="*{descriptions}"></td>
+        </tr>
+        <!--        <tr>-->
+        <!--            <th>Categories</th>-->
+        <!--            <td>-->
+        <!--                <select th:field="*{category}">-->
+        <!--                    <option th:each="x:${categories}" th:value="${x.id}" th:text="${x.name}">-->
+        <!--                    </option>-->
+        <!--                </select>-->
+        <!--            </td>-->
+        <!--        </tr>-->
+        <tr>
+            <th>Image</th>
+            <td><img height="300px" width="170px" style="object-fit: cover" th:src="@{'/image/' + ${product.image}}" alt="Hola"></td>
+        </tr>
+    </table><hr>
+</form>
+</body>
+</html>

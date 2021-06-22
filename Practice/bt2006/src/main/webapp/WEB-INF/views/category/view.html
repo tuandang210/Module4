@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Action</title>
+</head>
+<body>
+<h1>Category Detail</h1>
+<p><a th:href="@{/categories}">Back to list</a></p><hr>
+<form th:action="@{/save}" th:object="${category}" novalidate method="post">
+  <table>
+    <tr>
+      <th>Id</th>
+      <td><input readonly type="text" th:field="*{id}"></td>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <td><input readonly type="text" th:field="*{name}"></td>
+    </tr>
+  </table><hr><br>
+</form>
+</body>
+</html>

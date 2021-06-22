@@ -1,0 +1,30 @@
+<!DOCTYPE html><!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Customer</title>
+</head>
+<body>
+<p><a th:href="@{/customers}">Back</a></p>
+<form th:method="get" th:action="@{/create-customers}" th:object="${customer}" novalidate>
+  <table>
+    <tr>
+      <th></th>
+      <th><input readonly th:field="*{id}"></th>
+    </tr>
+    <tr>
+      <th>First Name</th>
+      <th><input readonly th:field="*{firstName}"></th>
+    </tr>
+    <tr>
+      <th>Last Name</th>
+      <th><input readonly th:field="*{lastName}"></th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
