@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+</head>
+<body>
+<form th:object="${user}" method="post" th:action="@{/save}">
+    <table>
+        <h2>Welcome <b th:text="${user.firstName}"></b> <b th:text="${user.lastName}"></b> </h2>
+    </table>
+</form>
+</body>
+</html>
