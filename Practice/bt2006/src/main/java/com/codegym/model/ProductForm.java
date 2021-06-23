@@ -6,24 +6,24 @@ public class ProductForm {
     private Long id;
     private String name;
     private String descriptions;
-    private Category category_id;
+    private Category category;
     private MultipartFile image;
 
     public ProductForm() {
     }
 
-    public ProductForm(Long id, String name, String descriptions, Category category_id, MultipartFile image) {
+    public ProductForm(Long id, String name, String descriptions, Category category, MultipartFile image) {
         this.id = id;
         this.name = name;
         this.descriptions = descriptions;
-        this.category_id = category_id;
+        this.category = category;
         this.image = image;
     }
 
-    public ProductForm(String name, String descriptions, Category category_id, MultipartFile image) {
+    public ProductForm(String name, String descriptions, Category category, MultipartFile image) {
         this.name = name;
         this.descriptions = descriptions;
-        this.category_id = category_id;
+        this.category = category;
         this.image = image;
     }
 
@@ -51,12 +51,12 @@ public class ProductForm {
         this.descriptions = descriptions;
     }
 
-    public Category getCategory_id() {
-        return category_id;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategory_id(Category category_id) {
-        this.category_id = category_id;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public MultipartFile getImage() {

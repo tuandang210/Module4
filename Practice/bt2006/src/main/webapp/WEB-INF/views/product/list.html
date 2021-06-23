@@ -7,7 +7,11 @@
 <body>
 <h1>List Products</h1>
 <p><a th:href="@{/categories}">Show List Categories</a></p>
-<p><a th:href="@{/create-product}">Create New Product</a></p>
+<p><a th:href="@{/products/create-product}">Create New Product</a></p>
+<form method="get">
+    <input type="text" name="search" placeholder="Search by name">
+    <button>Search</button>
+</form>
 <hr>
 <table border="1px">
     <tr>
@@ -24,10 +28,15 @@
         <td th:text="${x.descriptions}"></td>
         <td th:text="${x.category.name}"></td>
         <td><img height="100px" width="100px" style="object-fit: cover" th:src="@{'/image/' + ${x.image}}" alt="Hola"></td>
-        <td><a th:href="@{/edited/{id}(id=${x.id})}">edit</a></td>
-        <td><a th:href="@{/deleted/{id}(id=${x.id})}">delete</a></td>
-        <td><a th:href="@{/viewed/{id}(id=${x.id})}">view</a></td>
+        <td><a th:href="@{/products/edited/{id}(id=${x.id})}">edit</a></td>
+        <td><a th:href="@{/products/deleted/{id}(id=${x.id})}">delete</a></td>
+        <td><a th:href="@{/products/viewed/{id}(id=${x.id})}">view</a></td>
     </tr>
 </table>
+<div>
+    <a th:href="@{'/products'(page=${products.number - 1})}" th:if="${products.hasPrevious()}">Previous</a>
+    <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>
+    <a th:href="@{'/products'(page=${products.number + 1})}" th:if="${products.hasNext()}">Next</a>
+</div>
 </body>
 </html>

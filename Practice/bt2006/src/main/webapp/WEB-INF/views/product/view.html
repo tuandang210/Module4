@@ -22,20 +22,17 @@
             <th>Descriptions</th>
             <td><input type="text" readonly th:field="*{descriptions}"></td>
         </tr>
-        <!--        <tr>-->
-        <!--            <th>Categories</th>-->
-        <!--            <td>-->
-        <!--                <select th:field="*{category}">-->
-        <!--                    <option th:each="x:${categories}" th:value="${x.id}" th:text="${x.name}">-->
-        <!--                    </option>-->
-        <!--                </select>-->
-        <!--            </td>-->
-        <!--        </tr>-->
+        <tr>
+            <th>Category</th>
+            <td><input type="text" readonly th:field="*{category.name}"></td>
+        </tr>
         <tr>
             <th>Image</th>
-            <td><img height="300px" width="170px" style="object-fit: cover" th:src="@{'/image/' + ${product.image}}" alt="Hola"></td>
+            <td><img height="300px" width="170px" style="object-fit: cover" th:src="@{'/image/' + ${product.image}}"
+                     alt="Hola"></td>
         </tr>
-    </table><hr>
+    </table>
+    <hr>
 </form>
 </body>
 </html>

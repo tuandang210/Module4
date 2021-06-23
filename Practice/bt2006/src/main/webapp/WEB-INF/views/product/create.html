@@ -11,7 +11,7 @@
 <h3 th:if="${message}">
     <p style="color:red;" th:text="${message}"></p>
 </h3>
-<form method="post" th:action="@{/save-product}" th:object="${productForm}" enctype="multipart/form-data">
+<form method="post" th:href="@{/products/create-product}" th:object="${productForm}" enctype="multipart/form-data">
     <table>
         <tr>
             <th>Name</th>
@@ -24,7 +24,7 @@
         <tr>
             <th>Categories</th>
             <td>
-                <select th:field="*{category_id}">
+                <select th:field="*{category}">
                     <option th:each="x:${categories}" th:value="${x.id}" th:text="${x.name}">
                 </select>
             </td>

@@ -11,7 +11,7 @@
 <h3 th:if="${message}">
     <p style="color:red;" th:text="${message}"></p>
 </h3>
-<form method="post" th:action="@{/save-product}" novalidate th:object="${product}" enctype="multipart/form-data">
+<form method="post" th:action="@{/products/create-product}" novalidate th:object="${product}" enctype="multipart/form-data">
     <table>
         <tr>
             <th></th>
@@ -25,15 +25,15 @@
             <th>Descriptions</th>
             <td><input type="text" th:field="*{descriptions}"></td>
         </tr>
-<!--        <tr>-->
-<!--            <th>Categories</th>-->
-<!--            <td>-->
-<!--                <select th:field="*{category}">-->
-<!--                    <option th:each="x:${categories}" th:value="${x.id}" th:text="${x.name}">-->
-<!--                    </option>-->
-<!--                </select>-->
-<!--            </td>-->
-<!--        </tr>-->
+        <tr>
+            <th>Categories</th>
+            <td>
+                <select th:field="*{category}">
+                    <option th:each="x:${categories}" th:value="${x.id}" th:text="${x.name}">
+                    </option>
+                </select>
+            </td>
+        </tr>
         <tr>
             <th>Image</th>
             <td><input type="file" th:field="*{image}"></td>

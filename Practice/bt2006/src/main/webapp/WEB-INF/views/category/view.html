@@ -8,16 +8,19 @@
 <h1>Category Detail</h1>
 <p><a th:href="@{/categories}">Back to list</a></p><hr>
 <form th:action="@{/save}" th:object="${category}" novalidate method="post">
-  <table>
+  <h3 th:text="${category.name}"></h3>
+  <table border="1px">
     <tr>
-      <th>Id</th>
-      <td><input readonly type="text" th:field="*{id}"></td>
+        <th>Name</th>
+        <th>Descriptions</th>
+        <th>Image</th>
     </tr>
-    <tr>
-      <th>Name</th>
-      <td><input readonly type="text" th:field="*{name}"></td>
+    <tr th:each="x:${products}">
+      <td th:text="${x.name}"></td>
+      <td th:text="${x.descriptions}"></td>
+      <td><img height="100px" width="100px" style="object-fit: cover" th:src="@{'/image/' + ${x.image}}" alt="Hola"></td>
     </tr>
-  </table><hr><br>
+  </table>
 </form>
 </body>
 </html>

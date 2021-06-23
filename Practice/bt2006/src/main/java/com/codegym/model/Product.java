@@ -11,6 +11,7 @@ public class Product {
     private String name;
     private String descriptions;
     @ManyToOne
+    @JoinColumn
     private Category category;
     private String image;
 
