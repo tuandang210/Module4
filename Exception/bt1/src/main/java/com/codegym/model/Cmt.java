@@ -2,6 +2,8 @@ package com.codegym.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -10,8 +12,12 @@ public class Cmt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "Khong duoc de trong ten dang nhap")
+    @Size(min = 5, message = "Toi thieu 5 ky tu")
     private String author;
     private int rate;
+    @NotEmpty(message = "Khong duoc de trong feedback")
+    @Size(max = 50,min = 1, message = "Toi da 50 ky tu")
     private String feedback;
     private Date date;
     private int likes;

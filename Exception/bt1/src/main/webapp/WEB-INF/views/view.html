@@ -22,17 +22,23 @@
 </div>
 <div>
     <form th:method="post" th:object="${cmt}" th:action="@{/comments}" novalidate="novalidate">
-        <select th:field="*{rate}">
-            <option th:value="1">1</option>
-            <option th:value="2">2</option>
-            <option th:value="3">3</option>
-            <option th:value="4">4</option>
-            <option th:value="5">5</option>
-        </select>
+        <p>
+            <select th:field="*{rate}">
+                <option th:value="1">1</option>
+                <option th:value="2">2</option>
+                <option th:value="3">3</option>
+                <option th:value="4">4</option>
+                <option th:value="5">5</option>
+            </select>
+        </p>
         <h3>Author</h3>
-        <input type="text" th:field="*{author}">
+        <p>
+            <span><input type="text" th:field="*{author}"></span>
+            <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Name Error</span>
+        </p>
         <h3>Feedback</h3>
-        <textarea th:field="*{feedback}"></textarea><br>
+        <p><textarea th:field="*{feedback}"></textarea>
+            <span th:if="${#fields.hasErrors('feedback')}" th:errors="*{feedback}">Name Error</span></p>
         <button type="submit">Comment</button>
     </form>
 </div>
@@ -47,7 +53,8 @@
                 <p><span th:text="${x.feedback}"></span>
                     <b th:text="${x.like}"></b>
                     <span><a th:href="@{/comments/{id}/{check}(id=${x.id} ,check=${1})}">Like</a></span>
-                    <span><a th:href="@{/comments/{id}/{check}(id=${x.id},check=${2})}">Unlike</a></span></p>
+                    <span><a th:href="@{/comments/{id}/{check}(id=${x.id},check=${2})}">Dislike</a></span>
+                    <span><a th:href="@{/comments/delete/{id}(id=${x.id})}">Delete</a></span></p>
             </div>
         </div>
     </form>

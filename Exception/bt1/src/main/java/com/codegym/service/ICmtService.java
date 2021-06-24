@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface ICmtService {
     Page<Cmt> findAll(Pageable pageable);
 
-    Optional<Cmt> findById(Long id);
+    Optional<Cmt> findById(Long id) throws Exception;
 
     void save(Cmt cmt);
 

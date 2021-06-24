@@ -10,5 +10,7 @@ com/codegym/service/CmtService.java
  com.codegym.service.CmtService
 com/codegym/service/ICmtService.java
  com.codegym.service.ICmtService
+com/codegym/logger/Logger.java
+ com.codegym.logger.Logger
 com/codegym/controller/CmtController.java
  com.codegym.controller.CmtController
