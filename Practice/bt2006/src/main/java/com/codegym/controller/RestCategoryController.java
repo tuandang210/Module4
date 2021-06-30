@@ -41,15 +41,6 @@ public class RestCategoryController {
         return new ResponseEntity<>(category, HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity<Page<Category>> findAllCate(@PageableDefault(size = 1000) Pageable pageable) {
-        Page<Category> categories = categoryService.findAll(pageable);
-        if (categories.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(categories, HttpStatus.OK);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<Category> findById(@PathVariable Long id) {
         try {
@@ -63,7 +54,7 @@ public class RestCategoryController {
         }
     }
 
-    @GetMapping("/search")
+    @GetMapping
     public ResponseEntity<Page<Category>> findByName(@RequestParam String search, Pageable pageable) {
         Page<Category> categories;
         if (!search.isEmpty()) {
