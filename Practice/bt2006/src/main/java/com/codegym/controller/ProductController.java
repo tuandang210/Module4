@@ -1,5 +1,6 @@
 package com.codegym.controller;
 
+import com.codegym.exception.DuplicateNameExceptionCategory;
 import com.codegym.model.Category;
 import com.codegym.model.Product;
 import com.codegym.model.ProductForm;
@@ -12,10 +13,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
@@ -30,7 +33,7 @@ public class ProductController {
     private ICategoryService categoryService;
 
     @ModelAttribute("categories")
-    public Iterable<Category> categories(){
+    public Iterable<Category> categories() {
         return categoryService.findALl();
     }
 
@@ -40,9 +43,13 @@ public class ProductController {
     @GetMapping
     public ModelAndView listProduct(@RequestParam(name = "search") Optional<String> search, @PageableDefault(size = 5) Pageable pageable) {
         Page<Product> products;
-        if(search.isPresent()){
-            products = productService.findAllByNameContaining(search.get(),pageable);
-        }else {
+        if (search.isPresent()) {
+            products = productService.findAllByNameContaining(search.get(), pageable);
+            if (products.isEmpty()) {
+                ModelAndView modelAndView1 = new ModelAndView("/product/list");
+                modelAndView1.addObject("message", "Not Found!!");
+            }
+        } else {
             products = productService.findAll(pageable);
         }
         ModelAndView modelAndView = new ModelAndView("/product/list", "products", products);
@@ -58,7 +65,12 @@ public class ProductController {
     }
 
     @PostMapping("/create-product")
-    public ModelAndView saveProduct(@ModelAttribute("productForm") ProductForm productForm) {
+    public ModelAndView saveProduct(@Valid @ModelAttribute("productForm") ProductForm productForm, BindingResult bindingResult) throws Exception {
+        Product product;
+        String fileNameOld = "";
+        if(productForm.getId()!=null){
+            fileNameOld = productService.findById(productForm.getId()).get().getImage();
+        }
         MultipartFile multipartFile = productForm.getImage();
         String fileName = multipartFile.getOriginalFilename();
         try {
@@ -66,26 +78,38 @@ public class ProductController {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        Product product = new Product(productForm.getId(), productForm.getName(), productForm.getDescriptions(), productForm.getCategory(), fileName);
-        productService.save(product);
-        ModelAndView modelAndView = new ModelAndView("/product/create", "productForm", new ProductForm());
-        modelAndView.addObject("message", "Success!!");
-        return modelAndView;
+        if (bindingResult.hasFieldErrors()) {
+            return new ModelAndView("/product/create");
+        } else {
+            product = new Product(productForm.getId(), productForm.getName(), productForm.getDescriptions(), productForm.getCategory(), fileName);
+            if (fileName.equals("")){
+                product.setImage(fileNameOld);
+            }
+
+            productService.save(product);
+
+            ModelAndView modelAndView = new ModelAndView("/product/create", "productForm", new ProductForm());
+            modelAndView.addObject("message", "Success!!");
+            return modelAndView;
+        }
     }
 
     @GetMapping("/edited/{id}")
     public ModelAndView editProduct(@PathVariable Long id) {
-        Optional<Product> product = productService.findById(id);
-        if (product.isPresent()) {
-            ModelAndView modelAndView = new ModelAndView("/product/edit", "product", product.get());
-            Iterable<Category> categories = categoryService.findALl();
-            modelAndView.addObject("categories", categories);
-            return modelAndView;
-        }else {
-            ModelAndView modelAndView = new ModelAndView("404");
-            return modelAndView;
+        try {
+            Optional<Product> product = productService.findById(id);
+            if (product.isPresent()) {
+                ModelAndView modelAndView = new ModelAndView("/product/edit", "product", product.get());
+                Iterable<Category> categories = categoryService.findALl();
+                modelAndView.addObject("categories", categories);
+                return modelAndView;
+            } else {
+                ModelAndView modelAndView = new ModelAndView("/404");
+                return modelAndView;
+            }
+        } catch (Exception e) {
+            return new ModelAndView("/404");
         }
-
     }
 
     @GetMapping("/deleted/{id}")
@@ -96,8 +120,19 @@ public class ProductController {
 
     @GetMapping("/viewed/{id}")
     public ModelAndView viewProduct(@PathVariable Long id) {
-        Optional<Product> product = productService.findById(id);
-        ModelAndView modelAndView = new ModelAndView("/product/view", "product", product.get());
-        return modelAndView;
+        try {
+            Optional<Product> product = productService.findById(id);
+            ModelAndView modelAndView = new ModelAndView("/product/view", "product", product.get());
+            return modelAndView;
+        } catch (Exception e) {
+            return new ModelAndView("/404");
+        }
+    }
+
+    @ExceptionHandler(DuplicateNameExceptionCategory.class)
+    public ModelAndView ShowException12() {
+        ModelAndView modelAndView1 = new ModelAndView("/product/create");
+        modelAndView1.addObject("message", "Duplicate name!!");
+        return modelAndView1;
     }
 }

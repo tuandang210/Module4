@@ -2,9 +2,15 @@ package com.codegym.model;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class ProductForm {
     private Long id;
+    @NotEmpty(message = "You must type a name for this")
+    @Size(min = 1, max = 50, message = "Minimum one word and maximum is fifty words")
     private String name;
+    @Size(min = 1, max = 50, message = "Minimum one word and maximum is fifty words")
     private String descriptions;
     private Category category;
     private MultipartFile image;

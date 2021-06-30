@@ -1,8 +1,10 @@
 package com.codegym.service;
 
+import com.codegym.exception.DuplicateNameExceptionCategory;
 import com.codegym.model.Category;
 import com.codegym.repository.ICategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -24,8 +26,12 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
-    public void save(Category category) {
-        categoryRepository.save(category);
+    public Category save(Category category) throws DuplicateNameExceptionCategory {
+        try {
+            return categoryRepository.save(category);
+        }catch (DataIntegrityViolationException e){
+            throw new DuplicateNameExceptionCategory();
+        }
     }
 
     @Override
@@ -36,5 +42,10 @@ public class CategoryService implements ICategoryService {
     @Override
     public Page<Category> findAll(Pageable pageable) {
         return categoryRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Category> findAllByNameContaining(String name, Pageable pageable) {
+        return categoryRepository.findAllByNameContains(name, pageable);
     }
 }

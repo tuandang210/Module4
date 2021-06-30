@@ -11,7 +11,7 @@
 <h3 th:if="${message}">
     <p style="color:red;" th:text="${message}"></p>
 </h3>
-<form method="post" th:action="@{/products/create-product}" novalidate th:object="${product}" enctype="multipart/form-data">
+<form method="post" th:action="@{/products/create-product}" th:object="${product}" enctype="multipart/form-data">
     <table>
         <tr>
             <th></th>

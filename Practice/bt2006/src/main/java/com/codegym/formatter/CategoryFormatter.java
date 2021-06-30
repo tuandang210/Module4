@@ -22,13 +22,18 @@ public class CategoryFormatter implements Formatter<Category> {
 
     @Override
     public Category parse(String text, Locale locale) throws ParseException {
-        Optional<Category> categoryOptional = categoryService.findById(Long.parseLong(text));
+        Optional<Category> categoryOptional = null;
+        try {
+            categoryOptional = categoryService.findById(Long.parseLong(text));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return categoryOptional.orElse(null);
     }
 
     @Override
     public String print(Category object, Locale locale) {
-        return "[" + object.getId() + ", " +object.getName() + "]";
+        return "[" + object.getId() + ", " + object.getName() + "]";
     }
 
 }

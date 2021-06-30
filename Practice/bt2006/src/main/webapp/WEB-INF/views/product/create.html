@@ -16,10 +16,12 @@
         <tr>
             <th>Name</th>
             <td><input type="text" th:field="*{name}"></td>
+            <td style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
         </tr>
         <tr>
             <th>Descriptions</th>
             <td><input type="text" th:field="*{descriptions}"></td>
+            <td style="color: red" th:if="${#fields.hasErrors('descriptions')}" th:errors="*{descriptions}">Name Error</td>
         </tr>
         <tr>
             <th>Categories</th>
@@ -34,7 +36,7 @@
             <td><input type="file" th:field="*{image}"></td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td colspan="3">
                 <input type="submit" value="Submit">
             </td>
         </tr>

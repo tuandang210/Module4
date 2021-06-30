@@ -10,15 +10,17 @@
 <h3 th:if="${message}">
    <p style="color:red;" th:text="${message}"></p>
 </h3>
-<form th:action="@{/save}" th:object="${category}" novalidate method="post">
+<form th:action="@{/save}" th:object="${category}" method="post">
     <table>
         <tr>
             <td></td>
             <td><input hidden th:field="*{id}"></td>
+            <td></td>
         </tr>
         <tr>
             <th>Name</th>
             <td><input type="text" th:field="*{name}"></td>
+            <td style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
         </tr>
     </table><hr><br>
     <button type="submit" value="Submit">Submit</button>

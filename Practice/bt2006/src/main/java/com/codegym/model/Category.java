@@ -1,7 +1,10 @@
 package com.codegym.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table
@@ -9,15 +12,13 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "You must type a name for this")
+    @Size(min = 1, max = 50, message = "Minimum one word and maximum is fifty words")
     private String name;
-
-    @OneToMany(targetEntity = Product.class)
-    List<Product> products;
 
     public Category(Long id, String name, List<Product> products) {
         this.id = id;
         this.name = name;
-        this.products = products;
     }
 
     public Category() {
@@ -26,14 +27,6 @@ public class Category {
     public Category(Long id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 
     public Long getId() {
@@ -50,5 +43,18 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Category category = (Category) o;
+        return id.equals(category.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

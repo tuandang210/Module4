@@ -8,6 +8,9 @@
 <h1>List Products</h1>
 <p><a th:href="@{/categories}">Show List Categories</a></p>
 <p><a th:href="@{/products/create-product}">Create New Product</a></p>
+<h3 th:if="${message}">
+    <p style="color:red;" th:text="${message}"></p>
+</h3>
 <form method="get">
     <input type="text" name="search" placeholder="Search by name">
     <button>Search</button>
