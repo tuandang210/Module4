@@ -184,8 +184,9 @@
     })
 //hàm create
     $(document).ready(function () {
-        $("#createNew").click(function (e) {
+        $("#createdCate").click(function (e) {
             let name = $('#category_name').val()
+            $('#category_name').val("");
             let newCategory = {
                 name: name
             }
@@ -195,7 +196,7 @@
                     'Content-Type': 'application/json'
                 },
                 type: "POST",
-                url: `/api/categories/`,
+                url: `/api/categories`,
                 data: JSON.stringify(newCategory),
                 success: successHandler
             })
@@ -240,7 +241,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button class="btn btn-primary" id="save-changes">Submit</button>
+                <button class="btn btn-primary" id="save-changing">Submit</button>
             </div>
         </div>
     </div>

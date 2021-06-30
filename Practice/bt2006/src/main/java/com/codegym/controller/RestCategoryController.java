@@ -23,8 +23,8 @@ public class RestCategoryController {
     @PostMapping
     public ResponseEntity<Category> create(@RequestBody Category category) {
         try {
-            categoryService.save(category);
-            return new ResponseEntity<>(category, HttpStatus.OK);
+            ;
+            return new ResponseEntity<>(categoryService.save(category), HttpStatus.CREATED);
         } catch (DuplicateNameExceptionCategory e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -55,8 +55,11 @@ public class RestCategoryController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Category>> findByName(@RequestParam String search, Pageable pageable) {
+    public ResponseEntity<Page<Category>> findByName(@RequestParam(required = false) String search, Pageable pageable) {
         Page<Category> categories;
+        if (search==null){
+            search = "";
+        }
         if (!search.isEmpty()) {
             categories = categoryService.findAllByNameContaining(search, pageable);
         } else {
@@ -67,7 +70,7 @@ public class RestCategoryController {
 
 
     @GetMapping("/list")
-    public ModelAndView showListCategory(@PageableDefault(size = 5) Pageable pageable) {
+    public ModelAndView showListCategory(@PageableDefault(size = 1000) Pageable pageable) {
         Page<Category> categories;
         categories = categoryService.findAll(pageable);
         ModelAndView modelAndView = new ModelAndView("/category/list", "categories", categories);
