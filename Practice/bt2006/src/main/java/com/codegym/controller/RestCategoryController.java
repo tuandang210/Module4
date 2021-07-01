@@ -5,6 +5,7 @@ import com.codegym.model.Category;
 import com.codegym.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -55,9 +57,10 @@ public class RestCategoryController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Category>> findByName(@RequestParam(required = false) String search, Pageable pageable) {
+    public ResponseEntity<Page<Category>> findByName(@RequestParam(required = false) String search, @RequestParam(required = false, defaultValue = "0") Integer page, @RequestParam(required = false, defaultValue = "5") Integer size) {
+        PageRequest pageable = PageRequest.of(page, size);
         Page<Category> categories;
-        if (search==null){
+        if (search == null) {
             search = "";
         }
         if (!search.isEmpty()) {
@@ -70,10 +73,12 @@ public class RestCategoryController {
 
 
     @GetMapping("/list")
-    public ModelAndView showListCategory(@PageableDefault(size = 1000) Pageable pageable) {
+    public ModelAndView showListCategory(@PageableDefault(size = 5) Pageable pageable) {
         Page<Category> categories;
         categories = categoryService.findAll(pageable);
+        Integer total = ((List<Category>)categoryService.findALl()).size();
         ModelAndView modelAndView = new ModelAndView("/category/list", "categories", categories);
+        modelAndView.addObject("total", total);
         return modelAndView;
     }
 

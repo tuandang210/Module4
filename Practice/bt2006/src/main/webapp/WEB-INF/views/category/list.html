@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>List Categories</title>
@@ -7,38 +7,46 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<h1>List Categories</h1>
-<p><a th:href="@{/products}">Back to Products list</a></p>
-<p><a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createNew"
-      data-bs-whatever="@mdo">Creat New Category
-</a></p>
-<input type="text" id="search" name="search" placeholder="Search by name">
-<input onclick="findCategory()" type="submit" value="Submit">
-<hr>
-<table id="categoryList" border="1px">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>View</th>
-    </tr>
-    <tr th:each="x, rowStats:${categories}">
-        <td th:text="${x.id}"></td>
-        <td th:text="${x.name}"></td>
-        <td>
-            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-               data-bs-whatever="@mdo" th:attr="data-category-id=''+${x.id}+''">Edit
-            </a>
-        </td>
-        <td><a class="deleteCategory btn btn-danger" th:href="${x.getId()}">Delete</a></td>
-        <td><a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#showCategory"
-               data-bs-whatever="@mdo" th:attr="data-category-id=''+${x.id}+''">View
-        </a></td>
-    </tr>
-</table>
-<div id="modal"></div>
-<div id=""></div>
+<div align="center">
+    <h1 th:text="#{logo.title}"></h1>
+    Language: <a href="?lang=en" id="en">English</a> | <a href="?lang=vi" id="vi">Vietnamese</a> | <a href="?lang=th"
+                                                                                                      id="th">Thailand</a>
+    <p><a th:href="@{/products}">Back to Products list</a></p>
+    <p><a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createNew"
+          data-bs-whatever="@mdo" th:text="#{create}">
+    </a></p>
+    <input type="text" id="search" name="search" th:attr="placeholder=#{search-by-name}">
+    <input onclick="findCategory()" type="submit" th:attr="value=#{name-button}">
+    <hr>
+
+    <div>
+        <p>There are <span><input readonly type="number" id="total11" th:value="${total}"></span> categories</p>
+    </div>
+
+    <table id="categoryList" border="1px">
+        <tr>
+            <th th:text="#{table-id}"></th>
+            <th th:text="#{table-name}"></th>
+            <th th:text="#{table-edit}"></th>
+            <th th:text="#{table-delete}"></th>
+            <th th:text="#{table-view}"></th>
+        </tr>
+        <tr th:each="x, rowStats:${categories}">
+            <td th:text="${x.id}"></td>
+            <td th:text="${x.name}"></td>
+            <td>
+                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                   data-bs-whatever="@mdo" th:attr="data-category-id=''+${x.id}+''" th:text="#{form-edit}">
+                </a>
+            </td>
+            <td><a class="deleteCategory btn btn-danger" th:href="${x.getId()}" th:text="#{form-delete}"></a></td>
+            <td><a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#showCategory"
+                   data-bs-whatever="@mdo" th:attr="data-category-id=''+${x.id}+''" th:text="#{form-view}">
+            </a></td>
+        </tr>
+    </table>
+
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
@@ -75,7 +83,10 @@
                             type: "DELETE",
                             url: `/api/categories/${categoryId}`,
                             success: function (data) {
-                                a.parent().parent().remove();
+                                successHandler();
+                                let total = parseInt($('#total11').val());
+                                total -= 1;
+                                $('#total11').val(total);
                             }
                         });
                         event.preventDefault();
@@ -85,12 +96,15 @@
         })
     }
 
+
     function successHandler() {
         $('#exampleModal').modal('hide');
         $('#createNew').modal('hide');
+
+        let size = $('#pageSize').val();
         $.ajax({
             type: "GET",
-            url: `/api/categories`,
+            url: `/api/categories?size=${size}`,
             success: function (data) {
                 let content = '    <tr>\n' +
                     '        <th>Id</th>\n' +
@@ -99,9 +113,11 @@
                     '        <th>Delete</th>\n' +
                     '        <th>View</th>\n' +
                     '    </tr>';
+                9
                 for (let i = 0; i < data.content.length; i++) {
                     content += getCategory(data.content[i]);
                 }
+
                 document.getElementById('categoryList').innerHTML = content;
                 $(document).ready(function () {
                     $('.deleteCategory').click(function (event) {
@@ -111,7 +127,10 @@
                             type: "DELETE",
                             url: `/api/categories/${categoryId}`,
                             success: function (data) {
-                                a.parent().parent().remove();
+                                successHandler();
+                                let total = parseInt($('#total11').val());
+                                total -= 1;
+                                $('#total11').val(total);
                             }
                         });
                         event.preventDefault();
@@ -120,7 +139,8 @@
             }
         })
     }
-//vẽ lại html
+
+    //vẽ lại html
     function getCategory(category) {
         return `<tr>
 <td >${category.id}</td>
@@ -133,7 +153,8 @@
                data-bs-whatever="@mdo" data-category-id=${category.id}>View
         </a></td></tr>`;
     }
-//hàm edit
+
+    //hàm edit
     $(document).ready(function () {
         $('#exampleModal').on('show.bs.modal', function (e) {
             let categoryId = $(e.relatedTarget).data('category-id')
@@ -167,7 +188,7 @@
             })
         });
     })
-//hàm delete
+    //hàm delete
     $(document).ready(function () {
         $('.deleteCategory').click(function (e) {
             let a = $(this);
@@ -176,13 +197,16 @@
                 type: "DELETE",
                 url: `/api/categories/${categoryId}`,
                 success: function (data) {
-                    a.parent().parent().remove();
+                    successHandler();
+                    let total = parseInt($('#total11').val());
+                    total -= 1;
+                    $('#total11').val(total);
                 }
             });
             event.preventDefault();
         });
     })
-//hàm create
+    //hàm create
     $(document).ready(function () {
         $("#createdCate").click(function (e) {
             let name = $('#category_name').val()
@@ -198,12 +222,18 @@
                 type: "POST",
                 url: `/api/categories`,
                 data: JSON.stringify(newCategory),
-                success: successHandler
+                success: function () {
+                    let total = parseInt($('#total11').val());
+                    total += 1;
+                    $('#total11').val(total);
+                    successHandler();
+                }
+
             })
             event.preventDefault();
         })
     })
-//hàm show
+    //hàm show
     $(document).ready(function () {
         $('#showCategory').on('show.bs.modal', function (e) {
             let categoryId = $(e.relatedTarget).data('category-id')
@@ -241,7 +271,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button class="btn btn-primary" id="save-changing">Submit</button>
+                <button class="btn btn-primary" id="save-changes">Submit</button>
             </div>
         </div>
     </div>
@@ -296,5 +326,39 @@
         </div>
     </div>
 </div>
+<div align="center">
+    <input hidden id="pageSize" type="number" value="5"/>
+    <button id="previous">See Less</button>
+    <button id="load">See More</button>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#load').click(function () {
+            let size = parseInt($('#pageSize').val());
+            let total = parseInt($('#total11').val());
+            if (size >= total) {
+                size = total + (5 - total % 5);
+            } else {
+                size += 5;
+            }
+            $('#pageSize').val(size);
+            successHandler()
+        })
+
+        $('#previous').click(function () {
+            let size = parseInt($('#pageSize').val());
+
+            if (size <= 5) {
+                size = 5;
+            } else {
+                size -= 5;
+            }
+
+            $('#pageSize').val(size);
+            successHandler()
+        })
+    });
+</script>
 </body>
 </html>

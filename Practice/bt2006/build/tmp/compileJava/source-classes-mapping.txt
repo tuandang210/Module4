@@ -10,8 +10,8 @@ com/codegym/model/ProductForm.java
  com.codegym.model.ProductForm
 com/codegym/service/IProductService.java
  com.codegym.service.IProductService
-com/codegym/config/AppInit.java
- com.codegym.config.AppInit
+com/codegym/controller/RestProductController.java
+ com.codegym.controller.RestProductController
 com/codegym/service/IGeneralService.java
  com.codegym.service.IGeneralService
 com/codegym/service/ProductService.java
@@ -20,17 +20,21 @@ com/codegym/controller/ProductController.java
  com.codegym.controller.ProductController
 com/codegym/repository/ICategoryRepository.java
  com.codegym.repository.ICategoryRepository
+com/codegym/service/CategoryService.java
+ com.codegym.service.CategoryService
 com/codegym/config/AppConfig.java
  com.codegym.config.AppConfig
-com/codegym/controller/CategoryController.java
- com.codegym.controller.CategoryController
 com/codegym/formatter/CategoryFormatter.java
  com.codegym.formatter.CategoryFormatter
 com/codegym/service/ICategoryService.java
  com.codegym.service.ICategoryService
-com/codegym/service/CategoryService.java
- com.codegym.service.CategoryService
-com/codegym/controller/RestProductController.java
- com.codegym.controller.RestProductController
+com/codegym/controller/RestLoginController.java
+ com.codegym.controller.RestLoginController
+com/codegym/config/SecurityConfig.java
+ com.codegym.config.SecurityConfig
+com/codegym/config/SecurityInit.java
+ com.codegym.config.SecurityInit
+com/codegym/config/AppInit.java
+ com.codegym.config.AppInit
 com/codegym/controller/RestCategoryController.java
  com.codegym.controller.RestCategoryController
