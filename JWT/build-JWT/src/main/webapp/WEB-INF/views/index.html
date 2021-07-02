@@ -80,33 +80,33 @@
 </div>
 <script>
     $(document).ready(function () {
-        $('#submitLogin').click(function (e) {
-            let username = $('#username').val();
-            let password = $('#password').val();
-            let fullName = $('#fullName').val();
-            let newUser = {
-                username: username,
-                password: password,
-                fullName: fullName
-            }
-            $.ajax({
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                type: "POST",
-                url: `/api/register`,
-                data: JSON.stringify(newUser),
-                success: function (data) {
-                    $('#showOk').modal('hide');
-                    console.log(data)
-                    $('#username').val("");
-                    $('#password').val("");
-                    $('#fullName').val("");
-                }
-            })
-            event.preventDefault()
-        })
+        // $('#submitLogin').click(function (e) {
+        //     let username = $('#username').val();
+        //     let password = $('#password').val();
+        //     let fullName = $('#fullName').val();
+        //     let newUser = {
+        //         username: username,
+        //         password: password,
+        //         fullName: fullName
+        //     }
+        //     $.ajax({
+        //         headers: {
+        //             'Accept': 'application/json',
+        //             'Content-Type': 'application/json'
+        //         },
+        //         type: "POST",
+        //         url: `/api/register`,
+        //         data: JSON.stringify(newUser),
+        //         success: function (data) {
+        //             $('#showOk').modal('hide');
+        //             console.log(data)
+        //             $('#username').val("");
+        //             $('#password').val("");
+        //             $('#fullName').val("");
+        //         }
+        //     })
+        //     event.preventDefault()
+        // })
 
 
         $('#submitLoginForm').click(function (e) {
@@ -129,6 +129,7 @@
                     console.log(data)
                     $('#usernameLogin').val("");
                     $('#passwordLogin').val("");
+                    localStorage.setItem("accessToken", data.accessToken);
                     window.location.href = "http://localhost:8080/api/hello";
                 }
             })

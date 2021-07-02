@@ -34,6 +34,8 @@ com/codegym/model/JwtResponse.java
  com.codegym.model.JwtResponse
 com/codegym/service/user/UserService.java
  com.codegym.service.user.UserService
+com/codegym/configuration/CustomSuccessHandler.java
+ com.codegym.configuration.CustomSuccessHandler
 com/codegym/security/SecurityConfig.java
  com.codegym.security.SecurityConfig
 com/codegym/configuration/AppInit.java

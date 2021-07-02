@@ -5,49 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f62ade9e-7788-4af6-a4f3-0f402d563d96" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../JWT/phanQuyen/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JWT/phanQuyen/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JWT/phanQuyen/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JWT/phanQuyen/.idea/modules/phanQuyen.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JWT/phanQuyen/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JWT/phanQuyen/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/config/SecurityInit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/controller/RestLoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/message.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/message_th.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/message_vi.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codegym/config/AppConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codegym/config/AppConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codegym/config/AppInit.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codegym/config/AppInit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codegym/controller/CategoryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codegym/controller/RestCategoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codegym/controller/RestCategoryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/bt2006-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/bt2006-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/config/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/config/AppInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/config/AppInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/controller/CategoryController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/controller/RestCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/controller/RestCategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/category/create.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/category/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/category/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/category/view.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Spring-Boot/customer-manager/src/main/java/com/codegym/customermanager/model/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../SpringController/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../SpringController/customer-management" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../SpringMVC/practice2/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../SpringMVC/practice2/customer-management" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SpringSecurity/securityLoginForm/.gradle/6.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../SpringSecurity/securityLoginForm/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SpringSecurity/securityLoginForm/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../SpringSecurity/securityLoginForm/.idea/gradle.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,6 +211,7 @@
       <workItem from="1625041901803" duration="5894000" />
       <workItem from="1625102775859" duration="9521000" />
       <workItem from="1625121308185" duration="78000" />
+      <workItem from="1625199157153" duration="12000" />
     </task>
     <servers />
   </component>
